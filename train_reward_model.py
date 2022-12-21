@@ -52,7 +52,7 @@ def main(train_path, test_path, model_name, dataset_name="dataset"):
     except:
         print("Saving model failed")
         if not os.path.exists(f"{output_dir}/torch_save"):
-            os.makedirs(f"{output_dir}/torch_save")
+            os.makedirs(f"{output_dir}/torch_save", exist_ok=True)
         t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
         pass
 
