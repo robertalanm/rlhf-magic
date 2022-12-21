@@ -24,7 +24,7 @@ def load_gzip_data(path):
 
 # %%
 def main(train_path, test_path, model_name, dataset_name="dataset"):
-    output_dir=f'ckpts/{dataset_name}/mock-eos-gpt-neo'
+    output_dir=f'ckpts/{dataset_name}/BTChat'
     # Open the file in a gzip-compressed manner
     train_data = load_gzip_data(train_path)
     test_data = load_gzip_data(test_path)
@@ -44,12 +44,18 @@ def main(train_path, test_path, model_name, dataset_name="dataset"):
             eval_dataset=val_dataset, data_collator=data_collator)
     trainer.train()
 
-    t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
+    # t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
 
+    # add a try wrapper
+    try:
+        t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
+    except:
+        print("Saving model failed")
+        pass
 
 if __name__ == "__main__":
     dataset_name = "hh-rlhf2/helpful-base"
     train_path = "hh-rlhf2/helpful-base/train.jsonl.gz"
     test_path = "hh-rlhf2/helpful-base/test.jsonl.gz"
-    model_name = "EleutherAI/gpt-neo-125M"
+    model_name = "EleutherAI/gpt-neo-2.7B"
     main(train_path, test_path, model_name, dataset_name=dataset_name)
