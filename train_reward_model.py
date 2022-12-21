@@ -24,7 +24,7 @@ def load_gzip_data(path):
 
 # %%
 def main(train_path, test_path, model_name, dataset_name="dataset"):
-    output_dir=f'ckpts/{dataset_name}/BTChat'
+    output_dir=f'ckpts/{dataset_name}/BTChat-125m'
     # Open the file in a gzip-compressed manner
     train_data = load_gzip_data(train_path)
     test_data = load_gzip_data(test_path)
@@ -60,5 +60,5 @@ if __name__ == "__main__":
     dataset_name = "hh-rlhf2/helpful-base"
     train_path = "hh-rlhf2/helpful-base/train.jsonl.gz"
     test_path = "hh-rlhf2/helpful-base/test.jsonl.gz"
-    model_name = "EleutherAI/gpt-neo-2.7B"
+    model_name = "EleutherAI/gpt-neo-125M"
     main(train_path, test_path, model_name, dataset_name=dataset_name)
