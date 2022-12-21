@@ -13,7 +13,7 @@ from fancy_einsum import einsum
 from mock_reward_model import GPTRewardModel
 from pair_dataset import PairwiseDataset, data_collator
 from pair_trainer import PairwiseTrainer
-
+import os
 
 def load_gzip_data(path):
     with gzip.open(path, "rb") as f:
@@ -51,6 +51,9 @@ def main(train_path, test_path, model_name, dataset_name="dataset"):
         t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
     except:
         print("Saving model failed")
+        if not os.path.exists(f"{output_dir}/torch_save"):
+            os.makedirs(f"{output_dir}/torch_save")
+        t.save(model.state_dict(), f"{output_dir}/torch_save/model.bin")
         pass
 
 if __name__ == "__main__":
