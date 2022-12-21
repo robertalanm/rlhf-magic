@@ -83,7 +83,7 @@ def main(reward_model_path, hparams={}):
     )
 
 # %%
-mock_model_path = "./hh-rlhf2/helpful-base/BTChat/checkpoint-48/pytorch_model.bin"
+mock_model_path = "./ckpts/helpful-base/BTChat/checkpoint-48/pytorch_model.bin"
 big_LLM_model_path = "/home/genesis/Documents/Projects/rlhf-magic/ckpts/colab/colab-trained-reward-model/checkpoint-360/pytorch_model.bin"
 if __name__ == "__main__":
     main(reward_model_path=mock_model_path)
