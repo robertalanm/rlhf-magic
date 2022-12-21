@@ -53,7 +53,7 @@ def main(reward_model_path, hparams={}):
         device = -1
 
 
-    model_name = "EleutherAI/gpt-neo-125M"
+    model_name = "EleutherAI/gpt-neo-2.7B"
     model = load_reward_model(reward_model_path)
     tokenizer = load_tokenizer(model_name)
 
@@ -83,7 +83,7 @@ def main(reward_model_path, hparams={}):
     )
 
 # %%
-mock_model_path = "./hh-rlhf2/helpful-base/mock-eos-gpt-neo/checkpoint-48/pytorch_model.bin"
+mock_model_path = "./hh-rlhf2/helpful-base/BTChat/checkpoint-48/pytorch_model.bin"
 big_LLM_model_path = "/home/genesis/Documents/Projects/rlhf-magic/ckpts/colab/colab-trained-reward-model/checkpoint-360/pytorch_model.bin"
 if __name__ == "__main__":
     main(reward_model_path=mock_model_path)
