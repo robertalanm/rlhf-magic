@@ -29,7 +29,7 @@ from trlx.trlx import train
 
 
 
-model_name = "robertmyers/bpt-rm"
+model_name = "Dahoas/gptneo-rm-static"
 tokenizer_name = "EleutherAI/gpt-j-6B"
 default_config = yaml.safe_load(open("ppo_config.yml"))
 
