@@ -35,7 +35,7 @@ default_config = yaml.safe_load(open("ppo_config.yml"))
 
 def load_reward_model(path):
     # Load a pretrained model and tokenizer
-    model = AutoModel.from_pretrained(path)
+    model = AutoModel.from_pretrained(path).half()
     return model 
 
 def load_tokenizer(model_name):
