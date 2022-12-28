@@ -6,7 +6,7 @@ sys.path.append("trlx")
 # with a sentiment reward function
 
 from datasets import load_dataset
-from transformers import pipeline, AutoTokenizer, GPTNeoForSequenceClassification
+from transformers import pipeline, AutoTokenizer, GPTNeoForSequenceClassification, AutoModel
 import os
 import yaml
 
@@ -29,13 +29,13 @@ from trlx.trlx import train
 
 
 
-model_name = "EleutherAI/gpt-neo-125M"
+model_name = "robertmyers/bpt-rm"
+tokenizer_name = "EleutherAI/gpt-j-6B"
 default_config = yaml.safe_load(open("ppo_config.yml"))
 
 def load_reward_model(path):
     # Load a pretrained model and tokenizer
-    model = GPTRewardModel(model_name)
-    model.load_state_dict(torch.load(path))
+    model = AutoModel.from_pretrained(path)
     return model 
 
 def load_tokenizer(model_name):
@@ -54,8 +54,8 @@ def main(reward_model_path, hparams={}):
 
 
     # model_name = "EleutherAI/gpt-neo-2.7B"
-    model = load_reward_model(reward_model_path)
-    tokenizer = load_tokenizer(model_name)
+    model = load_reward_model(model_name)
+    tokenizer = load_tokenizer(tokenizer_name)
 
     def reward_model_fn(samples):
         # TODO inefficient to be making many dicts and unmaking them again
